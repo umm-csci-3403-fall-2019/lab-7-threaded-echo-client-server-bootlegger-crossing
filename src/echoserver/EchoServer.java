@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import echoserver.ServerCorrespondentPool;
 
 public class EchoServer {
 	public static final int PORT_NUMBER = 6013;
@@ -15,13 +16,9 @@ public class EchoServer {
 	}
 
 	private void start() throws IOException, InterruptedException {
-		ServerSocket serverSocket = new ServerSocket(PORT_NUMBER);
-		while (true) {
-			Socket socket = serverSocket.accept();
-			InputStream inputStream = socket.getInputStream();
-			OutputStream outputStream = socket.getOutputStream();
 
-			// Put your code here.
+		ServerCorrespondentPool correspondentPool = new ServerCorrespondentPool(PORT_NUMBER);
+		correspondentPool.start();
 		}
 	}
-}
+
