@@ -17,7 +17,12 @@ public class EchoClient {
 		Socket socket = new Socket("localhost", PORT_NUMBER);
 		InputStream socketInputStream = socket.getInputStream();
 		OutputStream socketOutputStream = socket.getOutputStream();
+		//our two hot-potato playing minions
+		Thread keyboardPiper = new Thread(new Piper(System.in,socketOutputStream, false));
+		Thread screenPiper = new Thread(new Piper(socketInputStream,System.out, true));
 
-		// Put your code here.
+		//Minions, start your engines
+		screenPiper.start();
+		keyboardPiper.start();
 	}
 }
