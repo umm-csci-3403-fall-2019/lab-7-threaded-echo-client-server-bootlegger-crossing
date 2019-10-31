@@ -42,10 +42,11 @@ class ServerCorrespondent implements Runnable{
           cont = false;
         }
       }
+      socket.shutdownOutput();
+      System.out.println("Output closed");
     } catch (IOException e) {
       e.printStackTrace();
     }
-    System.out.println("Connection closed");
   }
 
 }
