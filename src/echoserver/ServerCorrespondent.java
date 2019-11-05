@@ -21,7 +21,6 @@ class ServerCorrespondent implements Runnable{
     System.out.println("Connection established");
     InputStream input = null;
     OutputStream output = null;
-    boolean cont = true;
 
     try {
       input = socket.getInputStream();
@@ -32,15 +31,11 @@ class ServerCorrespondent implements Runnable{
       System.out.println(input_byte);
 
       //if the present byte isn't null, continue reading and writing
-      while (cont){
+      while (input_byte != -1){
         output.write(input_byte);
         output.flush();
         input_byte = input.read();
         System.out.println(input_byte);
-
-        if( input_byte == -1){
-          cont = false;
-        }
       }
       socket.shutdownOutput();
       System.out.println("Output closed");
