@@ -28,14 +28,11 @@ class ServerCorrespondent implements Runnable{
       //we now have a connected client
       //Read its first byte
       Integer input_byte = input.read();
-      System.out.println(input_byte);
-
       //if the present byte isn't null, continue reading and writing
       while (input_byte != -1){
         output.write(input_byte);
         output.flush();
         input_byte = input.read();
-        System.out.println(input_byte);
       }
       socket.shutdownOutput();
       System.out.println("Output closed");
