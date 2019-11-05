@@ -18,8 +18,8 @@ public class EchoClient {
 		InputStream socketInputStream = socket.getInputStream();
 		OutputStream socketOutputStream = socket.getOutputStream();
 		//our two hot-potato playing minions
-		Thread keyboardPiper = new Thread(new Piper(System.in,socketOutputStream, false));
-		Thread screenPiper = new Thread(new Piper(socketInputStream,System.out, true));
+		Thread keyboardPiper = new Thread(new KeyboardPiper(System.in,socketOutputStream, socket));
+		Thread screenPiper = new Thread(new ScreenPiper(socketInputStream,System.out));
 
 		//Minions, start your engines
 		screenPiper.start();
